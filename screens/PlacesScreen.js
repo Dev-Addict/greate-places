@@ -1,15 +1,17 @@
-import React, {useEffect} from 'react';
-import {HeaderButtons, Item} from "react-navigation-header-buttons";
-import {View} from 'react-native';
+import React from 'react';
+import {useSelector} from "react-redux";
+import {View, FlatList} from 'react-native';
 
-import HeaderButton from "../components/HeaderButton";
+import PlaceCard from "../components/PlaceCard";
 import Text from '../components/Text';
+import styles from "../styles";
 
-const PlacesScreen = () => {
+const PlacesScreen = ({navigation}) => {
+    const places = useSelector(({places}) => places);
 
     return (
-        <View>
-            <Text>PlacesScreen</Text>
+        <View style={styles.screen}>
+            <FlatList data={places} keyExtractor={({id}) => id} renderItem={props => <PlaceCard navigation={navigation} {...props}/>}/>
         </View>
     );
 };

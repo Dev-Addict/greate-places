@@ -10,7 +10,6 @@ const styles = StyleSheet.create({
     },
     text: {
         color: Colors.foreground,
-        fontSize: 12,
         fontFamily: 'source-sans-pro'
     },
     text1: {
@@ -55,6 +54,20 @@ const styles = StyleSheet.create({
     },
     inputContainer: {
         marginVertical: 15
+    },
+    card: {
+        flexDirection: 'row',
+        borderColor: Colors.secondary,
+        borderTopWidth: 2,
+        borderBottomWidth: 2
+    },
+    cardImage: {
+        width: 80,
+        height: 80,
+        backgroundColor: Colors.secondary
+    },
+    content: {
+        padding: 10
     }
 });
 

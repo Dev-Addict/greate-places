@@ -12,14 +12,16 @@ import styles from "../styles";
 
 export const formName = 'PLACE_FORM';
 export const formFields = Object.freeze({
-    title: 'title'
+    title: 'title',
+    address: 'address',
+    image: 'image'
 });
 
 const CreatePlaceScreen = ({navigation: {navigate}, handleSubmit}) => {
     const dispatch = useDispatch();
 
     const onSubmit = (formValues) => {
-        dispatch(addPlace(new Place(formValues[formFields.title])));
+        dispatch(addPlace(new Place(formValues[formFields.title], formValues[formFields.address], formValues[formFields.image])));
         navigate('PlacesScreen');
     };
 
@@ -28,6 +30,8 @@ const CreatePlaceScreen = ({navigation: {navigate}, handleSubmit}) => {
             <View style={{width: '70%', marginBottom: 70}}>
                 <Text size={3}>Create New Place</Text>
                 <Field name={formFields.title} component={Input} label="Title"/>
+                <Field name={formFields.address} component={Input} label="Address"/>
+                <Field name={formFields.image} component={Input} label="Image"/>
                 <View style={{flexDirection: 'row'}}>
                     <Button title="Create" onPress={handleSubmit(onSubmit)}/>
                 </View>
