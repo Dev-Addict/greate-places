@@ -1,0 +1,1 @@
+export const ADD_PLACE_ACTION_TYPE = 'add place';

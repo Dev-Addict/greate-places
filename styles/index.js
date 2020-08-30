@@ -30,6 +30,31 @@ const styles = StyleSheet.create({
     },
     text6: {
         fontSize: 10
+    },
+    button : {
+        borderRadius: 3,
+        paddingVertical: 7,
+        paddingHorizontal: 12
+    },
+    primary: {
+        backgroundColor: Colors.primary
+    },
+    secondary: {
+        backgroundColor: Colors.secondary
+    },
+    danger: {
+        backgroundColor: Colors.danger
+    },
+    input: {
+        borderBottomWidth: 1,
+        borderBottomColor: Colors.primary,
+        color: Colors.foreground,
+        fontFamily: 'source-sans-pro',
+        fontSize: 14,
+        marginTop: -5
+    },
+    inputContainer: {
+        marginVertical: 15
     }
 });
 

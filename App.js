@@ -1,10 +1,15 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
-import { useFonts } from 'expo-font';
+import {createStore} from "redux";
+import {Provider} from 'react-redux';
+import {View} from 'react-native';
+import {useFonts} from 'expo-font';
 
 import Navigator from "./navigation/Navigator";
 import Loading from "./components/Loading";
-import Colors from "./constants/Colors";
+import reducers from './reducers';
+import styles from "./styles";
+
+const store = createStore(reducers);
 
 const App = () => {
     let [isFontLoaded] = useFonts({
@@ -18,17 +23,12 @@ const App = () => {
         return <Loading/>;
 
     return (
-        <View style={styles.container}>
-            <Navigator/>
-        </View>
+        <Provider store={store}>
+            <View style={styles.screen}>
+                <Navigator/>
+            </View>
+        </Provider>
     );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: Colors.background,
-    },
-});
 
 export default App;
