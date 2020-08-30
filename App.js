@@ -1,5 +1,6 @@
 import React from 'react';
-import {createStore} from "redux";
+import {applyMiddleware, createStore} from "redux";
+import reduxThunk from 'redux-thunk';
 import {Provider} from 'react-redux';
 import {View} from 'react-native';
 import {useFonts} from 'expo-font';
@@ -9,7 +10,7 @@ import Loading from "./components/Loading";
 import reducers from './reducers';
 import styles from "./styles";
 
-const store = createStore(reducers);
+const store = createStore(reducers, applyMiddleware(reduxThunk));
 
 const App = () => {
     let [isFontLoaded] = useFonts({

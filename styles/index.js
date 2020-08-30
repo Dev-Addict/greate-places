@@ -68,6 +68,22 @@ const styles = StyleSheet.create({
     },
     content: {
         padding: 10
+    },
+    imagePicker: {
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 20
+    },
+    imagePreview: {
+        margin: 10
+    },
+    takenImage: {
+        width: 100,
+        height: 100,
+        borderWidth: 3,
+        borderColor: Colors.primary,
+        borderRadius: 5
     }
 });
 
