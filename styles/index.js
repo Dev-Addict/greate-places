@@ -69,18 +69,25 @@ const styles = StyleSheet.create({
     content: {
         padding: 10
     },
-    imagePicker: {
+    picker: {
         width: '100%',
         justifyContent: 'center',
         alignItems: 'center',
         padding: 20
     },
-    imagePreview: {
-        margin: 10
+    preview: {
+        margin: 10,
+        width: 200,
+        height: 150,
+        borderWidth: 3,
+        borderColor: Colors.primary,
+        borderRadius: 5,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     takenImage: {
-        width: 100,
-        height: 100,
+        width: 200,
+        height: 150,
         borderWidth: 3,
         borderColor: Colors.primary,
         borderRadius: 5

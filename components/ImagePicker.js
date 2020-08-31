@@ -6,12 +6,14 @@ import * as Permissions from 'expo-permissions';
 import Text from "./Text";
 import Button from "./Button";
 import styles from "../styles";
+import Colors from "../constants/Colors";
 
 const ImagePicker = ({onImageTake}) => {
     const [image, setImage] = useState('');
 
     const grantPermission = async () => {
         const result = await Permissions.askAsync(Permissions.CAMERA, Permissions.CAMERA_ROLL);
+
         if (result.status !== 'granted') {
             Alert.alert('Insufficient Permissions!', 'You need to grant camera permissions to use this app', [{text: 'Okay!'}]);
             return false;
@@ -27,7 +29,7 @@ const ImagePicker = ({onImageTake}) => {
 
         const {canceled, uri} = await ExpoImagePicker.launchCameraAsync({
             allowsEditing: true,
-            aspect: [1, 1],
+            aspect: [4, 3],
             quality: 1
         });
 
@@ -38,8 +40,8 @@ const ImagePicker = ({onImageTake}) => {
     };
 
     return (
-        <View style={styles.imagePicker}>
-            <View style={styles.imagePreview}>
+        <View style={styles.picker}>
+            <View style={styles.preview}>
                 {image ?
                     <Image source={{
                         uri: image
