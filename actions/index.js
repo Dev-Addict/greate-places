@@ -25,6 +25,22 @@ export const addPlace = (place) => async dispatch => {
     }
 
     try {
+        const res = await fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${place.lon},${place.lat}.json?access_token=pk.eyJ1IjoiYXJpYW1hbiIsImEiOiJja2VpczA2dHYwbmYzMnpvNnFldng1a20zIn0.MthUVi2rI2gQpVKvKW3fSA`);
+
+        const resData = await res.json();
+
+        place.address = resData.features[0].place_name;
+    } catch (err) {
+        Alert.alert('Something went wrong!', 'When we were trying to get the place address something went wrong in fetching it.', [{text: 'Okay!'}]);
+
+        dispatch(setLoading(false));
+
+        return;
+    }
+
+    console.log(place);
+
+    try {
         const result = await insertPlace(place);
 
         place.id = result.insertId.toString();

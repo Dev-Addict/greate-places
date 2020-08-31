@@ -16,8 +16,8 @@ import Colors from "../constants/Colors";
 export const formName = 'PLACE_FORM';
 export const formFields = Object.freeze({
     title: 'title',
-    address: 'address',
-    image: 'image'
+    image: 'image',
+    location: 'location'
 });
 
 const CreatePlaceScreen = ({route, navigation: {navigate}, handleSubmit}) => {
@@ -39,7 +39,7 @@ const CreatePlaceScreen = ({route, navigation: {navigate}, handleSubmit}) => {
             return;
         }
 
-        dispatch(addPlace(new Place(formValues[formFields.title], formValues[formFields.address], image, location.coords.latitude, location.coords.longitude)));
+        dispatch(addPlace(new Place(formValues[formFields.title], '', image, location.coords.latitude, location.coords.longitude)));
 
         navigate('PlacesScreen');
     };
@@ -50,7 +50,6 @@ const CreatePlaceScreen = ({route, navigation: {navigate}, handleSubmit}) => {
                 <View style={{width: '70%', marginBottom: 70}}>
                     <Text size={2}>Create New Place</Text>
                     <Field name={formFields.title} component={Input} label="Title"/>
-                    <Field name={formFields.address} component={Input} label="Address"/>
                     <ImagePicker onImageTake={setImage}/>
                     <Text style={{color: Colors.danger}}>{imagePickerError}</Text>
                     <LocationPicker onLocationSelect={setLocation} navigate={navigate} route={route}/>
