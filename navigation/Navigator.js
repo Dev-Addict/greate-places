@@ -1,4 +1,6 @@
 import React from 'react';
+import {useSelector} from "react-redux";
+import {Modal} from 'react-native';
 import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -9,14 +11,20 @@ import PlacesScreen from "../screens/PlacesScreen";
 import PlaceScreen from "../screens/PlaceScreen";
 import CreatePlaceScreen from "../screens/CreatePlaceScreen";
 import MapScreen from "../screens/MapScreen";
+import Loading from "../components/Loading";
 import HeaderButton from "../components/HeaderButton";
 import Colors from "../constants/Colors";
 
 const Stack = createStackNavigator();
 
 const Navigator = () => {
+    const isLoading = useSelector(({isLoading}) => isLoading);
+
     return (
         <NavigationContainer>
+            <Modal animationType="slide" transparent={false} visible={isLoading}>
+                <Loading/>
+            </Modal>
             <Stack.Navigator screenOptions={() => ({
                 headerStyle: {
                     backgroundColor: Colors.background,

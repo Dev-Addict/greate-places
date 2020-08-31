@@ -9,7 +9,9 @@ import styles from "../styles";
 const PlacesScreen = ({navigation}) => {
     const dispatch = useDispatch();
 
-    dispatch(getPlaces());
+    useEffect(() => {
+        dispatch(getPlaces());
+    }, []);
 
     const places = useSelector(({places}) => places);
 
