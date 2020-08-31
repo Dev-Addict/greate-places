@@ -8,7 +8,14 @@ import {useFonts} from 'expo-font';
 import Navigator from "./navigation/Navigator";
 import Loading from "./components/Loading";
 import reducers from './reducers';
+import {init as initialDB} from "./helpers/db";
 import styles from "./styles";
+
+initialDB().then(() => {
+    console.log('DB initialized.');
+}).catch(err => {
+    console.log('Failed initializing DB.')
+});
 
 const store = createStore(reducers, applyMiddleware(reduxThunk));
 
