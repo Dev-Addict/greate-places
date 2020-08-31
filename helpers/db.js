@@ -35,3 +35,19 @@ export const insertPlace = ({title, address, image, lat, lon}) => {
         })
     }));
 };
+
+export const getPlaces = () => {
+    return new Promise(((resolve, reject) => {
+        db.transaction(tx => {
+            tx.executeSql(
+                'SELECT * FROM places',
+                [],
+                (_, result) => {
+                    resolve(result);
+                },
+                (_, err) => {
+                    reject(err);
+                });
+        });
+    }));
+};
