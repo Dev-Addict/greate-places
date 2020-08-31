@@ -20,7 +20,7 @@ export const formFields = Object.freeze({
     image: 'image'
 });
 
-const CreatePlaceScreen = ({navigation: {navigate}, handleSubmit}) => {
+const CreatePlaceScreen = ({route, navigation: {navigate}, handleSubmit}) => {
     const dispatch = useDispatch();
 
     const [image, setImage] = useState('');
@@ -53,7 +53,7 @@ const CreatePlaceScreen = ({navigation: {navigate}, handleSubmit}) => {
                     <Field name={formFields.address} component={Input} label="Address"/>
                     <ImagePicker onImageTake={setImage}/>
                     <Text style={{color: Colors.danger}}>{imagePickerError}</Text>
-                    <LocationPicker onLocationSelect={setLocation}/>
+                    <LocationPicker onLocationSelect={setLocation} navigate={navigate} route={route}/>
                     <Text style={{color: Colors.danger}}>{locationPickerError}</Text>
                     <View style={{flexDirection: 'row'}}>
                         <Button title="Create" onPress={handleSubmit(onSubmit)}/>

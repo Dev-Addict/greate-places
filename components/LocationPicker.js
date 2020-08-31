@@ -1,19 +1,24 @@
-import React, {useState} from 'react';
-import {View, Image} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, Image, TouchableOpacity} from 'react-native';
 import {useDispatch} from "react-redux";
 import * as Permissions from "expo-permissions";
 import * as Location from 'expo-location';
 
 import Text from "./Text";
 import Button from "./Button";
-import styles from "../styles";
 import {setLoading} from "../actions";
-import Colors from "../constants/Colors";
+import styles from "../styles";
 
-const LocationPicker = ({onLocationSelect}) => {
+const LocationPicker = ({onLocationSelect, navigate, route}) => {
     const dispatch = useDispatch();
 
     const [location, setLocation] = useState(null);
+
+    useEffect(() => {
+        if (route?.params?.selectedLocation)
+            setLocation({coords: route?.params?.selectedLocation});
+        onLocationSelect({coords: route?.params?.selectedLocation});
+    }, [route?.params?.selectedLocation]);
 
     const grantPermission = async () => {
         const result = await Permissions.askAsync(Permissions.LOCATION);
@@ -46,15 +51,19 @@ const LocationPicker = ({onLocationSelect}) => {
 
     return (
         <View style={styles.picker}>
-            <View style={styles.preview}>
+            <TouchableOpacity activeOpacity={0.6} style={styles.preview} onPress={() => navigate('MapScreen')}>
                 {location ?
                     <Image source={{
                         uri: `https://api.mapbox.com/styles/v1/mapbox/light-v10/static/pin-s-o+f00(${location.coords.longitude},${location.coords.latitude})/${location.coords.longitude},${location.coords.latitude},15,0,60/200x150?access_token=pk.eyJ1IjoiYXJpYW1hbiIsImEiOiJja2VpczA2dHYwbmYzMnpvNnFldng1a20zIn0.MthUVi2rI2gQpVKvKW3fSA`
                     }} style={styles.takenImage}/> :
-                    <Text>You haven't selected any location yet.</Text>
+                    <>
+                        <Text>You haven't selected any location yet.</Text>
+                        <Text>Click to pick on map.</Text>
+                    </>
                 }
-            </View>
-            <Button color={1} title="Select Location" onPress={getLocationHandler}/>
+            </TouchableOpacity>
+            <Button color={1} title="Select Location Using GPS" onPress={getLocationHandler} style={{marginBottom: 10}}/>
+            <Button color={1} title="Select Location Using Map" onPress={() => navigate('MapScreen')}/>
         </View>
     );
 };

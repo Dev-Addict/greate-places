@@ -33,16 +33,18 @@ const styles = StyleSheet.create({
     button : {
         borderRadius: 3,
         paddingVertical: 7,
-        paddingHorizontal: 12
+        paddingHorizontal: 12,
+        borderWidth: 1,
+        backgroundColor: Colors.background
     },
     primary: {
-        backgroundColor: Colors.primary
+        borderColor: Colors.primary
     },
     secondary: {
-        backgroundColor: Colors.secondary
+        borderColor: Colors.secondary
     },
     danger: {
-        backgroundColor: Colors.danger
+        borderColor: Colors.danger
     },
     input: {
         borderBottomWidth: 1,
@@ -91,6 +93,9 @@ const styles = StyleSheet.create({
         borderWidth: 3,
         borderColor: Colors.primary,
         borderRadius: 5
+    },
+    map: {
+        flex: 1
     }
 });
 
