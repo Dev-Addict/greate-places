@@ -51,7 +51,11 @@ const LocationPicker = ({onLocationSelect, navigate, route}) => {
 
     return (
         <View style={styles.picker}>
-            <TouchableOpacity activeOpacity={0.6} style={styles.preview} onPress={() => navigate('MapScreen')}>
+            <TouchableOpacity activeOpacity={0.6} style={styles.preview} onPress={() => navigate('MapScreen', {
+                editable: true,
+                lat: location?.coords?.latitude || -122.43,
+                lon: location?.coords?.longitude || 37.78
+            })}>
                 {location ?
                     <Image source={{
                         uri: `https://api.mapbox.com/styles/v1/mapbox/light-v10/static/pin-s-o+f00(${location.coords.longitude},${location.coords.latitude})/${location.coords.longitude},${location.coords.latitude},15,0,60/200x150?access_token=pk.eyJ1IjoiYXJpYW1hbiIsImEiOiJja2VpczA2dHYwbmYzMnpvNnFldng1a20zIn0.MthUVi2rI2gQpVKvKW3fSA`

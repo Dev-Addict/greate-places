@@ -96,6 +96,10 @@ const styles = StyleSheet.create({
     },
     map: {
         flex: 1
+    },
+    fullImage: {
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').width * 0.75
     }
 });
 

@@ -6,34 +6,40 @@ import {HeaderButtons, Item} from "react-navigation-header-buttons";
 import HeaderButton from "../components/HeaderButton";
 import Colors from "../constants/Colors";
 
-const MapScreen = ({navigation: {setOptions, navigate, setParams}}) => {
-    const [selectedLocation, setSelectedLocation] = useState(null);
+const MapScreen = ({route, navigation: {setOptions, navigate}}) => {
+    const editable = route?.params?.editable !== false;
+    const lat = route?.params?.lat || -122;
+    const lon = route?.params?.lon || 38;
+
+    const [selectedLocation, setSelectedLocation] = useState({latitude: lat, longitude: lon});
 
     useEffect(() => {
-        setOptions({
-            headerRight: () => (
-                <HeaderButtons HeaderButtonComponent={HeaderButton}>
-                    <Item title="save" iconName="md-save" color={Colors.primary} size={25}
-                          onPress={() => {
-                              if (selectedLocation)
-                                  navigate('CreatePlaceScreen', {
-                                      selectedLocation
-                                  });
-                          }}/>
-                </HeaderButtons>
-            )
-        })
+        if (editable)
+            setOptions({
+                headerRight: () => (
+                    <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                        <Item title="save" iconName="md-save" color={Colors.primary} size={25}
+                              onPress={() => {
+                                  if (selectedLocation)
+                                      navigate('CreatePlaceScreen', {
+                                          selectedLocation
+                                      });
+                              }}/>
+                    </HeaderButtons>
+                )
+            })
     }, [selectedLocation]);
 
     const mapRegion = {
-        latitude: 37.78,
-        longitude: -122.43,
+        latitude: lat,
+        longitude: lon,
         latitudeDelta: 0.0922,
         longitudeDelta: 0.0421
     };
 
     const selectLocationHandler = ({nativeEvent: {coordinate}}) => {
-        setSelectedLocation(coordinate)
+        if (editable)
+            setSelectedLocation(coordinate)
     };
 
     return (

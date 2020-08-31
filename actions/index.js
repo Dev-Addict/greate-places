@@ -38,8 +38,6 @@ export const addPlace = (place) => async dispatch => {
         return;
     }
 
-    console.log(place);
-
     try {
         const result = await insertPlace(place);
 
