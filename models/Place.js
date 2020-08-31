@@ -1,11 +1,11 @@
 class Place {
-    constructor(title, address, image, lot = 75.75, lan = 75.75) {
+    constructor(title, address, image, lat = 75.75, lon = 75.75) {
         this.id = Date.now().toString(16);
         this.title = title;
         this.address = address;
         this.image = image;
-        this.lot = lot;
-        this.lan = lan;
+        this.lat = lat;
+        this.lon = lon;
     }
 }
 

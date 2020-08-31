@@ -24,7 +24,7 @@ const App = () => {
         'source-sans-pro-italic': require('./assets/fonts/SourceSansPro-Italic.ttf'),
         'source-sans-pro': require('./assets/fonts/SourceSansPro-Regular.ttf'),
         'source-sans-pro-semi-bold': require('./assets/fonts/SourceSansPro-SemiBold.ttf'),
-        'source-sans-pro-semi-bold-italic': require('./assets/fonts/SourceSansPro-SemiBoldItalic.ttf'),
+        'source-sans-pro-semi-bold-italic': require('./assets/fonts/SourceSansPro-SemiBoldItalic.ttf')
     });
 
     if (!isFontLoaded)

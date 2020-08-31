@@ -18,3 +18,20 @@ export const init = () => {
         });
     }));
 };
+
+export const insertPlace = ({title, address, image, lat, lon}) => {
+    return new Promise(((resolve, reject) => {
+        db.transaction(tx => {
+            tx.executeSql(
+                'INSERT INTO places (title, address, image, lat, lon) VALUES (?, ?, ?, ?, ?)',
+                [title, address, image, lat, lon],
+                (_, result) => {
+                    resolve(result)
+                },
+                (_, err) => {
+                    reject(err);
+                }
+            );
+        })
+    }));
+};
